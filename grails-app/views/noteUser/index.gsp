@@ -11,12 +11,12 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
 </head>
 <body>
-
-<h1>You are Admin!</h1>
-<g:render template="/shared/errorMessage"/>
-<g:render template="create"/>
-<div class="modal-body" id="editNoteUser"></div>
-<g:render template="show"/>
+<div class="container">
+    <g:render template="/shared/errorMessage"/>
+    <g:render template="create"/>
+    <div class="modal-body" id="editNoteUser"></div>
+    <g:render template="show"/>
+</div>
 <script>
     $(document).ready(function() {
         $('#myTable').DataTable();

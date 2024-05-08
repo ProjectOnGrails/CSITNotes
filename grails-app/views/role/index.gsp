@@ -12,7 +12,7 @@
 </head>
 
 <body>
-<div class="container mt-5">
+<div class="container">
     <g:render template="/shared/errorMessage"/>
     <g:render template="create"/>
     <div class="modal-body" id="editRole"></div>

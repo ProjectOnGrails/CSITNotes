@@ -8,70 +8,40 @@
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <asset:link rel="icon" href="favicon.ico" type="image/x-ico"/>
-
     <asset:stylesheet src="application.css"/>
-
     <g:layoutHead/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
-
-<nav class="navbar navbar-expand-lg navbar-dark navbar-static-top" role="navigation">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/#"><asset:image src="grails.svg" alt="Grails Logo"/></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" aria-expanded="false" style="height: 0.8px;" id="navbarContent">
-            <ul class="nav navbar-nav ml-auto">
-                <g:pageProperty name="page.nav"/>
-            </ul>
+<div class="sidebar">
+    <div class="sidebar-title">CSITNotes</div>
+    <a href="/"><i class="fas fa-home"></i> Home</a>
+    <a href="/noteUser/index"><i class="fas fa-user"></i> NoteUser</a>
+    <a href="/role/index"><i class="fas fa-user-tag"></i> Role</a>
+    <a href="/semester/index"><i class="fas fa-calendar-alt"></i> Semester</a>
+    <a href="/subject/index"><i class="fas fa-book"></i> Subject</a>
+    <a href="/book/index"><i class="fas fa-book-open"></i> Book</a>
+    <a href="/semester/index"><i class="fas fa-sticky-note"></i> Note</a>
+    <a href="/semester/index"><i class="fas fa-question-circle"></i> Question</a>
+    <sec:ifNotLoggedIn>
+        <a href="/login/auth"><i class="fas fa-sign-in-alt"></i> Login</a>
+    </sec:ifNotLoggedIn>
+    <sec:ifLoggedIn>
+        <div class="sidebar-bottom">
+            <div class="username"><i class="fas fa-user"></i>
+                <sec:username/>!
+            </div>
+            <g:link controller="logout" action="index">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </g:link>
         </div>
-    </div>
-</nav>
-<sec:ifLoggedIn>
-    Welcome Back <sec:username/>!
-    <g:link controller="logout" action="index">Logout</g:link>
-</sec:ifLoggedIn>
-<sec:ifNotLoggedIn>
-    <h3>You are not login</h3>
-    <g:link controller='login' action='auth'>Login</g:link>
-</sec:ifNotLoggedIn>
-<g:layoutBody/>
-
-<div class="footer" role="contentinfo">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col">
-                <a href="http://guides.grails.org" target="_blank">
-                    <asset:image src="advancedgrails.svg" alt="Grails Guides" class="float-left"/>
-                </a>
-                <strong class="centered"><a href="http://guides.grails.org" target="_blank">Grails Guides</a></strong>
-                <p>Building your first Grails app? Looking to add security, or create a Single-Page-App? Check out the <a href="http://guides.grails.org" target="_blank">Grails Guides</a> for step-by-step tutorials.</p>
-
-            </div>
-            <div class="col">
-                <a href="http://docs.grails.org" target="_blank">
-                    <asset:image src="documentation.svg" alt="Grails Documentation" class="float-left"/>
-                </a>
-                <strong class="centered"><a href="http://docs.grails.org" target="_blank">Documentation</a></strong>
-                <p>Ready to dig in? You can find in-depth documentation for all the features of Grails in the <a href="http://docs.grails.org" target="_blank">User Guide</a>.</p>
-
-            </div>
-            <div class="col">
-                <a href="https://slack.grails.org" target="_blank">
-                    <asset:image src="slack.svg" alt="Grails Slack" class="float-left"/>
-                </a>
-                <strong class="centered"><a href="https://slack.grails.org" target="_blank">Join the Community</a></strong>
-                <p>Get feedback and share your experience with other Grails developers in the community <a href="https://slack.grails.org" target="_blank">Slack channel</a>.</p>
-            </div>
-        </div>
-    </div>
+    </sec:ifLoggedIn>
 </div>
 
-<div id="spinner" class="spinner" style="display:none;">
-    <g:message code="spinner.alt" default="Loading&hellip;"/>
+<div class="content">
+    <g:layoutBody/>
 </div>
 
 </body>
