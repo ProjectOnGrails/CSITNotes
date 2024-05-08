@@ -13,6 +13,7 @@ class BootStrap {
                 '/logout', '/logout.*', '/logout/*']) {
             new Requestmap(url: url, configAttribute: 'permitAll').save()
         }
+        new Requestmap(url: '/noteUser/**',      configAttribute: 'ROLE_ADMIN').save()
         springSecurityService.clearCachedRequestmaps()
         setUpService.startMethod()
     }
