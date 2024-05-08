@@ -58,11 +58,7 @@ class NoteUserController {
     def update(){
         try {
             String user = springSecurityService.currentUser
-            def userInstance=NoteUser.findById(params.id)
-            if(userInstance) {
-                userInstance.properties = params
-                userInstance.updatedBy = user
-                userInstance.save(flush: true)
+            if(noteUserService.updateUser(params,user)){
                 flash.message = "Data Updated Successfully!!"
                 redirect(view: 'index')
             }
