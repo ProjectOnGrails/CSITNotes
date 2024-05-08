@@ -4,11 +4,15 @@ import com.CSITNotes.Role
 import com.CSITNotes.User
 import com.CSITNotes.UserRole
 import grails.gorm.transactions.Transactional
+import user.NoteUser
 
 @Transactional
 class SetUpService {
 
     def startMethod() {
+        if(NoteUser.count()==0){
+
+        }
         def roleAdmin= Role.findByAuthority("ROLE_ADMIN")
         if(!roleAdmin){
             roleAdmin=new Role(
@@ -20,7 +24,11 @@ class SetUpService {
             userAdmin=new User(
                     username: 'admin',
                     password: 'admin',
-            ).save(failOnError: true,flush:true)
+            )
+        }
+
+        if(NoteUser.count()==0){
+            new NoteUser(fullName: 'Shiv Shankar Mahato',gender: NoteUser.Gender.Male,email: 'shiv@gmail.com',phone: '9812345678',createdBy: 'Shiv Shankar', user: userAdmin ).save(failOnError: true,flush:true)
         }
 
         // Check if the UserRole instance already exists

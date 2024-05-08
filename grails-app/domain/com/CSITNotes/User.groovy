@@ -3,6 +3,7 @@ package com.CSITNotes
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
 import grails.compiler.GrailsCompileStatic
+import user.NoteUser
 
 @GrailsCompileStatic
 @EqualsAndHashCode(includes='username')
@@ -13,6 +14,7 @@ class User implements Serializable {
 
     String username
     String password
+    static belongsTo = [noteUser: NoteUser]
     boolean enabled = true
     boolean accountExpired
     boolean accountLocked

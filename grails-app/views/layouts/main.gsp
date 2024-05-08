@@ -32,8 +32,10 @@
 </nav>
 <sec:ifLoggedIn>
     Welcome Back <sec:username/>!
+    <g:link controller="logout" action="index">Logout</g:link>
 </sec:ifLoggedIn>
 <sec:ifNotLoggedIn>
+    <h3>You are not login</h3>
     <g:link controller='login' action='auth'>Login</g:link>
 </sec:ifNotLoggedIn>
 <g:layoutBody/>
