@@ -37,5 +37,4 @@ class SemesterService {
         return false
     }
 
-
 }
