@@ -1,5 +1,8 @@
 package user
 
+import com.CSITNotes.Role
+import com.CSITNotes.User
+import com.CSITNotes.UserRole
 import grails.gorm.transactions.Transactional
 
 class NoteUserController {
@@ -8,69 +11,73 @@ class NoteUserController {
     def index() {
         try{
             def noteUsers=noteUserService.getNoteUser()
-            [noteUsers:noteUsers]
+            model:[noteUsers:noteUsers]
         }
         catch (Exception e){
             flash.message="Error while connecting Database ${e.message}"
         }
+    }
+
+    def create(){
+        def roles= Role.list()
+        render(template: 'create',model: [roles:roles])
     }
 
     def save() {
         try {
-            String user = springSecurityService.currentUser
-            if(noteUserService.saveNoteUser(params,user)){
-                flash.message="${params.fullName} Saved to Database"
+            String currentUser = springSecurityService.currentUser
+            if (noteUserService.saveNoteUser(params, currentUser)) {
+                flash.message = "NoteUser created successfully."
+            } else {
+                flash.message = "Error while creating NoteUser."
             }
-            else{
-                flash.message="Error while Creating"
-            }
-            redirect(view:"index")
+        } catch (Exception e) {
+            flash.message = "Error while connecting Database ${e.message}"
         }
-        catch (Exception e){
-            flash.message="Error while connecting Database ${e.message}"
-        }
+        redirect(view: "index")
     }
 
+
     @Transactional
-    def delete(){
-        try{
+    def delete() {
+        try {
             if (noteUserService.deleteUser(params)) {
-                flash.message = "Data deleted successfully"
-                redirect(view: 'index')
+                flash.message = "NoteUser and associated UserRole deleted successfully."
             } else {
-                flash.message = "Error While Deleting!!"
-                redirect(view: 'index')
+                flash.message = "Error while deleting NoteUser."
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             flash.error = "Error while connecting to database: ${e.message}"
-            redirect(view: 'index')
         }
+        redirect(view: "index")
     }
+
 
     def edit(){
         def id=params.id
         NoteUser userInstance=NoteUser.findById(id)
-        render(template: 'edit',model: [userInstance:userInstance])
+        def roles=Role.list()
+        render(template: 'edit',model: [userInstance:userInstance,roles: roles])
     }
 
-    @Transactional
-    def update(){
+    def details(){
+        def id=params.id
+        NoteUser userInstance=NoteUser.findById(id)
+        render(template: 'details',model: [userInstance:userInstance])
+    }
+
+    def update() {
         try {
-            String user = springSecurityService.currentUser
-            if(noteUserService.updateUser(params,user)){
-                flash.message = "Data Updated Successfully!!"
-                redirect(view: 'index')
+            String userLogin = springSecurityService.currentUser
+            if (noteUserService.updateUser(params, userLogin)) {
+                flash.message = "NoteUser updated successfully."
+            } else {
+                flash.message = "Error while updating NoteUser."
             }
-            else{
-                flash.message = "Error while Updating!!"
-                redirect(view: 'index')
-            }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             flash.message = "Error while connecting to database: ${e.message}"
-            redirect(view: 'index')
         }
+        redirect(view: 'index')
     }
 
 }

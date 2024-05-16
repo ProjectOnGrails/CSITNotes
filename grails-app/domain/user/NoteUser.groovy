@@ -28,7 +28,6 @@ class NoteUser {
         email email: true, blank: false
         updatedBy nullable: true
         lastUpdated nullable: true
-        user nullable: true
     }
 
     static mapping = {

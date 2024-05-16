@@ -12,15 +12,6 @@ class Role implements Serializable {
 	private static final long serialVersionUID = 1
 
 	String authority
-	int updateCount=0
-
-	def beforeUpdate() {
-		// Check if the stringField has been changed
-		if (isDirty('authority')) {
-			// Increment the intField by 1
-			updateCount++
-		}
-	}
 
 	static constraints = {
 		authority nullable: false, blank: false, unique: true

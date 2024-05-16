@@ -13,32 +13,84 @@
 <body>
 <div class="container">
     <g:render template="/shared/errorMessage"/>
-    <g:render template="create"/>
-    <div class="modal-body" id="editNoteUser"></div>
+    <!-- Button trigger modal -->
+    <button type="button" id="addNoteUser" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Create NoteUser
+    </button>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="CreateModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add NoteUser</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalBody">
+
+                </div>
+            </div>
+        </div>
+    </div>
     <g:render template="show"/>
+    <div class="modal-body" id="viewNoteUser"></div>
+    <div class="modal-body" id="editNoteUser"></div>
+
 </div>
 <script>
     $(document).ready(function() {
         $('#myTable').DataTable();
     });
-
-    $(".editBtn").click(function(){
-        let noteUserId=$(this).data('user-id')
+    $("#addNoteUser").click(function(){
         $.ajax({
-            url: "${createLink(controller:'noteUser',action:'edit')}",
+            url: "${createLink(controller:'noteUser',action:'create')}",
             type:"post",
-            data:{id:noteUserId},
             success: function(response) {
-                $('#editNoteUser').html(response)
-                $('#editModal').modal('show');
+                $('#CreateModal').modal('show');
+                $('#modalBody').html(response)
                 console.log('Controller action called successfully.');
-                console.log(response);
             },
             error: function(xhr, status, error) {
                 console.error('Error calling controller action:', error);
             }
         });
     });
+
+    $(".viewBtn").click(function(){
+        let noteUserId=$(this).data('user-id')
+        $.ajax({
+            url: "${createLink(controller:'noteUser',action:'details')}",
+            type:"get",
+            data:{id:noteUserId},
+            success: function(response) {
+                $('#viewNoteUser').html(response)
+                $('#detailModal').modal('show');
+                console.log('Controller action called successfully.');
+            },
+            error: function(xhr, status, error) {
+                console.error('Error calling controller action:', error);
+            }
+        });
+    });
+
+    $(document).on("click", ".editBtn", function(){
+        let userId=$(this).data('user-id')
+        $.ajax({
+            url: "${createLink(controller:'noteUser',action:'edit')}",
+            type:"post",
+            data:{id:userId},
+            success: function(response) {
+                $('#editNoteUser').html(response)
+                $('#editModal').modal('show');
+                console.log('Controller action called successfully.');
+            },
+            error: function(xhr, status, error) {
+                console.error('Error calling controller action:', error);
+            }
+        });
+    });
+
 </script>
 <!-- Include Bootstrap JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
