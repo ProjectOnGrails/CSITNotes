@@ -14,7 +14,7 @@ class BootStrap {
             new Requestmap(url: url, configAttribute: 'permitAll').save()
         }
         for (String urlAdmin in [
-                '/role/**', '/noteUser/**', '/semester/**', '/subject/**', '/book/**',
+                '/role/**', '/noteUser/**', '/semester/**', '/subject/**', '/resource/**',
                 '/question/**', '/note/**','/userRole/**']) {
             new Requestmap(url: urlAdmin, configAttribute: 'ROLE_ADMIN').save()
         }

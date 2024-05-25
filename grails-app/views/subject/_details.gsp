@@ -24,10 +24,10 @@
                             </div>
                         </div>
                         <p><strong>Description:</strong> ${subject.Description}</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="${createLink(action:'downloadFile', params: [id: subject.id])}" class="btn btn-primary">Download Syllabus</a>
-                        <a href="${createLink(action:'viewFile', params: [id: subject.id])}" class="btn btn-primary">View Syllabus</a>
+                        <p><strong>Created Date:</strong> ${subject.dateCreated}</p>
+                        <p><strong>Created By:</strong> ${subject.createdBy}</p>
+                        <p><strong>Updated Date:</strong> ${subject.lastUpdated}</p>
+                        <p><strong>Updated By:</strong> ${subject.updatedBy}</p>
                     </div>
                 </div>
             </div>

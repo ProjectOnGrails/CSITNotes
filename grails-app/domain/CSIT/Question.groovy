@@ -3,6 +3,7 @@ package CSIT
 class Question {
     String name
     String fileName
+    int year
     String fileURL
     Date dateCreated
     Date lastUpdated
@@ -19,6 +20,7 @@ class Question {
     static constraints = {
         name nullable: false, blank: false
         fileName nullable: false, blank: false
+        year nullable: false
         updatedBy nullable: true
         lastUpdated nullable: true
     }

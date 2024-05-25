@@ -12,9 +12,28 @@
 </head>
 
 <body>
-<div class="container">
+<div class="container mt-3">
     <g:render template="/shared/errorMessage"/>
-    <g:render template="create"/>
+
+    <!-- Button trigger modal -->
+    <button type="button" id="addSemester" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Create Semester
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add Semester</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal-body" id="editSemester"></div>
     <g:render template="show"/>
 </div>
@@ -24,8 +43,23 @@
         $('#myTable').DataTable();
     });
 
+    $("#addSemester").click(function(){
+        $.ajax({
+            url: "${createLink(controller:'semester',action:'create')}",
+            type:"post",
+            success: function(response) {
+                $('#exampleModal').modal('show');
+                $('#modalBody').html(response)
+                console.log('Controller action called successfully.');
+            },
+            error: function(xhr, status, error) {
+                console.error('Error calling controller action:', error);
+            }
+        });
+    });
+
     $(".editBtn").click(function(){
-        var semesterId=$(this).data('semester-id')
+        let semesterId=$(this).data('semester-id')
         $.ajax({
             url: "${createLink(controller:'semester',action:'edit')}",
             type:"post",

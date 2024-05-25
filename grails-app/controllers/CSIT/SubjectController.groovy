@@ -7,31 +7,24 @@ class SubjectController {
     def springSecurityService
 
     def index() {
-        try{
-            def semesters=subjectService.getSemesters()
-            if (!semesters) {
-                flash.message = "No semesters found in the database."
-            }
-            model: [semesters:semesters]
-        }
-        catch (Exception e){
-            flash.error = "Error while connecting to database: ${e.message}"
-        }
-
-    }
-
-    def getSubjects(){
         try {
             def semesterId = params.semesterId
             def subjects=subjectService.getSubjects(semesterId)
             if (!subjects) {
                 flash.message = "Subjects not found for semester ID: $semesterId"
             }
-            render(template: 'show', model: [subjects: subjects])
-        } catch (Exception e) {
+            model: [semesterId: semesterId,subjects:subjects]
+        }
+        catch (Exception e) {
             flash.message = "Error fetching subjects: ${e.message}"
         }
     }
+
+    def create(){
+        def semesterId=params.semesterId
+        render(template: "create",model: [semesterId: semesterId])
+    }
+
 
     def details(){
         def id=params.id
@@ -42,6 +35,7 @@ class SubjectController {
     def save() {
         try {
             String user = springSecurityService.currentUser
+            def semesterId=params.semesterId
             def file = request.getFile('fileUpload')
             if (file && !file.isEmpty()) {
                 def saveResult = subjectService.saveSubject(params, file, user)
@@ -54,50 +48,58 @@ class SubjectController {
             else {
                 flash.message = "No file selected"
             }
-
-        } catch (Exception e) {
-            flash.error = "Error while connecting to database: ${e.message}"
+            redirect(controller:'resource',action: 'index', params: [semesterId: semesterId])
         }
-        redirect(action: "index")
+        catch (Exception e) {
+            flash.message = "Error while connecting to database: ${e.message}"
+            def semesterId=params.semesterId
+            redirect(controller:'resource',action: 'index', params: [semesterId: semesterId])
+        }
+
     }
 
     def edit(){
-        def id=params.id
-        def semesters=Semester.findAll()
-        Subject subInstance=Subject.findById(id)
-        render(template: 'edit',model: [subject:subInstance,semesters: semesters])
+        def semesterId = params.semesterId
+        def subjectId=params.id
+        Subject subInstance=Subject.findById(subjectId)
+        render(template: 'edit',model: [subject:subInstance,semesterId: semesterId])
 
     }
 
     @Transactional
     def update() {
         try {
+            def semesterId=params.semesterId
             String username = springSecurityService.currentUser
             if (subjectService.updateSubject(params, username)) {
                 flash.message = "Data Updated Successfully!!"
             } else {
                 flash.error = "Error while Updating!!"
             }
-        } catch (Exception e) {
-            flash.error = "Error while connecting to database: ${e.message}"
+            redirect(controller:'resource',action: 'index', params: [semesterId: semesterId])
         }
-        redirect(action: 'index')
+        catch (Exception e) {
+            flash.message = "Error while connecting to database: ${e.message}"
+            def semesterId=params.semesterId
+            redirect(controller:'resource',action: 'index', params: [semesterId: semesterId])
+        }
     }
 
     @Transactional
     def delete(){
         try {
+            def semesterId=params.semesterId
             if (subjectService.deleteSubject(params)) {
                 flash.message = "Data deleted successfully"
-                redirect(view: 'index')
             } else {
                 flash.message = "Error While Deleting!!"
-                redirect(view: 'index')
             }
+            redirect(controller:'resource',action: 'index', params: [semesterId: semesterId])
         }
         catch (Exception e){
-            flash.error = "Error while connecting to database: ${e.message}"
-            redirect(view: 'index')
+            flash.message = "Error while connecting to database: ${e.message}"
+            def semesterId=params.semesterId
+            redirect(controller:'resource',action: 'index', params: [semesterId: semesterId])
         }
 
     }
@@ -124,9 +126,6 @@ class SubjectController {
                 flash.error = "File not found"
                 redirect(action: "index")
             }
-        } else {
-            flash.error = "Book not found"
-            redirect(action: "index")
         }
     }
 
@@ -142,9 +141,6 @@ class SubjectController {
                 flash.error = "File not found"
                 redirect(action: "index")
             }
-        } else {
-            flash.error = "Book not found"
-            redirect(action: "index")
         }
     }
 

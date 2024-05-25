@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
 </head>
 <body>
-<div class="container">
+<div class="container mt-3">
     <g:render template="/shared/errorMessage"/>
     <!-- Button trigger modal -->
     <button type="button" id="addNoteUser" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -74,7 +74,7 @@
         });
     });
 
-    $(document).on("click", ".editBtn", function(){
+    $('#viewNoteUser').on("click", ".editBtn", function(){
         let userId=$(this).data('user-id')
         $.ajax({
             url: "${createLink(controller:'noteUser',action:'edit')}",

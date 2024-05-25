@@ -1,19 +1,17 @@
 
-<div class="modal-body" id="viewSubject"></div>
-<div class="modal-body" id="editSubject"></div>
-
+<div class="modal-body" id="editQuestion"></div>
 <g:render template="show"/>
-
+<div class="modal-body" id="viewQuestion"></div>
 
 <script>
     $('.viewBtn').click(function() {
-        let subId = $(this).data('subject-id');
+        let questionId = $(this).data('question-id');
         $.ajax({
-            url: "${createLink(controller:'subject', action:'details')}",
+            url: "${createLink(controller:'question', action:'details')}",
             type: "GET",
-            data: { id: subId },
+            data: { id: questionId },
             success: function(response) {
-                $('#viewSubject').html(response);
+                $('#viewQuestion').html(response);
                 $('#detailModal').modal('show');
                 console.log('Controller action called successfully.');
             },
@@ -24,14 +22,14 @@
     });
 
     $('.editBtn').click(function() {
-        let subjectId = $(this).data('subject-id');
+        let questionId = $(this).data('question-id');
         let semesterId = $(this).data('semester-id');
         $.ajax({
-            url: "${createLink(controller:'subject', action:'edit')}",
+            url: "${createLink(controller:'question', action:'edit')}",
             type: "POST",
-            data: { id: subjectId,semesterId:semesterId },
+            data: { queId: questionId,semId:semesterId},
             success: function(response) {
-                $('#editSubject').html(response);
+                $('#editQuestion').html(response);
                 $('#editModal').modal('show');
                 console.log('Controller action called successfully.');
             },

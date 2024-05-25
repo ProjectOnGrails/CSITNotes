@@ -17,13 +17,9 @@
 <div class="sidebar">
     <div class="sidebar-title">CSITNotes</div>
     <a href="/"><i class="fas fa-home"></i> Home</a>
-    <a href="/noteUser/index"><i class="fas fa-user"></i> NoteUser</a>
     <a href="/role/index"><i class="fas fa-user-tag"></i> Role</a>
+    <a href="/noteUser/index"><i class="fas fa-user"></i> NoteUser</a>
     <a href="/semester/index"><i class="fas fa-calendar-alt"></i> Semester</a>
-    <a href="/subject/index"><i class="fas fa-book"></i> Subject</a>
-    <a href="/book/index"><i class="fas fa-book-open"></i> Book</a>
-    <a href="/semester/index"><i class="fas fa-sticky-note"></i> Note</a>
-    <a href="/semester/index"><i class="fas fa-question-circle"></i> Question</a>
     <sec:ifNotLoggedIn>
         <a href="/login/auth"><i class="fas fa-sign-in-alt"></i> Login</a>
     </sec:ifNotLoggedIn>

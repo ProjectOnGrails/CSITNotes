@@ -1,28 +1,20 @@
-<h1>Subject List</h1>
-<div class="table-responsive mt-3">
-    <table id="myTable" class="table table-striped table-bordered">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Code</th>
-            <th>Name</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <g:each in="${subjects}" var="temp">
-            <tr>
-                <th scope="row">${temp.id}</th>
-                <td>${temp.code}</td>
-                <td>${temp.name}</td>
-                <td class="text-center">
-                    <g:link action="edit" class="btn btn-primary mr-3 viewBtn" data-bs-toggle="modal" data-subject-id="${temp.id}">View</g:link>
-                    <g:link action="edit" class="btn btn-success mr-3 editBtn" data-bs-toggle="modal" data-subject-id="${temp.id}">Update</g:link>
-                    <g:link action="delete" id="${temp.id}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this subject?')">Delete</g:link>
-                </td>
-            </tr>
-        </g:each>
-        <!-- Add more rows as needed -->
-        </tbody>
-    </table>
+
+<div class="container mt-5">
+    <g:each in="${subjects}" var="subject">
+        <div class="row align-items-center mb-3">
+            <div class="col-md-3">
+                <p>${subject.name}</p>
+            </div>
+            <div class="col-md-6 text-center">
+                <a href="${createLink(action:'downloadFile', params: [id: subject.id])}" class="btn btn-primary mx-1">Download Syllabus</a>
+                <a href="${createLink(action:'viewFile', params: [id: subject.id])}" class="btn btn-primary mx-1">View Syllabus</a>
+            </div>
+            <div class="col-md-3 text-right">
+                <g:link class="btn btn-primary mr-2 viewBtn" data-bs-toggle="modal" data-subject-id="${subject.id}">View</g:link>
+                <g:link class="btn btn-success mr-2 editBtn" data-bs-toggle="modal" data-subject-id="${subject.id}" data-semester-id="${subject.semester.id}">Update</g:link>
+                <g:link action="delete" params="[id: subject.id, semesterId: semesterId]" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this subject?')">Delete</g:link>
+            </div>
+        </div>
+        <hr class="border border-danger border-2 opacity-50">
+    </g:each>
 </div>

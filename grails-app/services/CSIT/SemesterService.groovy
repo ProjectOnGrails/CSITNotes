@@ -31,6 +31,11 @@ class SemesterService {
         if(semInstance) {
             semInstance.properties = params
             semInstance.updatedBy = user
+            // Handle picture update
+            def picNew=params.pictureEdit
+            if(!picNew.empty){
+                semInstance.picture=picNew.getBytes()
+            }
             semInstance.save(flush:true)
             return true
         }

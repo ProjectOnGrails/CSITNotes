@@ -9,7 +9,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <g:form action="update" id="${semester.id}">
+                <g:form action="update" id="${semester.id}" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label class="form-label">
                             <input type="hidden" name="id" value="${semester.id}">
@@ -29,6 +29,13 @@
                             </select>
                         </label>
                     </div>
+
+                    <div class="mb-6">
+                        <label class="form-label">Choose Picture
+                            <input type="file" class="form-control" name="pictureEdit">
+                        </label>
+                    </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Update</button>

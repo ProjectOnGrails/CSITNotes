@@ -20,6 +20,10 @@ class SemesterController {
         }
     }
 
+    def create(){
+        render(template: 'create')
+    }
+
     def save(){
         try {
             def user = springSecurityService.currentUser
@@ -79,6 +83,13 @@ class SemesterController {
             flash.message = "Error while connecting to database: ${e.message}"
             redirect(view: 'index')
         }
+    }
+
+    def showPicture(Long id){
+        def semester=Semester.findById(id)
+        response.outputStream << semester.picture
+        response.outputStream.flush()
+        response.outputStream.close()
     }
 
 }

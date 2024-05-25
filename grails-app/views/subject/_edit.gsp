@@ -10,6 +10,8 @@
             <div class="modal-body">
                 <g:form action="update" method="POST" enctype="multipart/form-data" id="${subject.id}">
 
+                    <!-- Hidden field to pass semesterId -->
+                    <input type="hidden" name="semesterId" value="${semesterId}" />
                     <div class="mb-6">
                         <label class="form-label">
                             <input type="text" class="form-control" name="id" value="${subject.id}" disabled>
@@ -39,15 +41,6 @@
                     <div class="mb-6">
                         <label class="form-label">
                             <input type="text" class="form-control" value="${subject.description}" name="description" placeholder="Enter Subject Description">
-                        </label>
-                    </div>
-                    <div class="md-6">
-                        <label class="form-label">
-                            <select class="form-control" name="semester" required>
-                                <g:each in="${semesters}" var="semester">
-                                    <option value="${semester.id}" ${semester.id == subject.semester.id ? 'selected' : ''}>${semester.name}</option>
-                                </g:each>
-                            </select>
                         </label>
                     </div>
                     <div class="modal-footer">

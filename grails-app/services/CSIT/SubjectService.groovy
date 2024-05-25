@@ -15,7 +15,7 @@ class SubjectService {
     }
 
     def saveSubject(params, def file, String user) {
-        def folderPath = "D:/Grails/Static"
+        def folderPath = "D:/Grails/Static/Syllabus"
         def folder = new File(folderPath)
         if (!folder.exists()) {
             folder.mkdirs() // Create directory including parent directories if they don't exist
@@ -47,9 +47,14 @@ class SubjectService {
         if (subject) {
             subject.properties = params
             subject.updatedBy = username
+            // Handle picture update
+            def picNew=params.pictureEdit
+            if(!picNew.empty){
+                subject.picture=picNew.getBytes()
+            }
             def newFile = params.fileEdit
             if (!newFile.empty) {
-                def filePath = "D:/Grails/Static/${newFile.getOriginalFilename()}"
+                def filePath = "D:/Grails/Static/Syllabus/${newFile.getOriginalFilename()}"
                 newFile.transferTo(new File(filePath))
                 subject.syllabusName = newFile.getOriginalFilename()
                 subject.syllabusURL = filePath
