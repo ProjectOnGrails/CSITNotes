@@ -1,20 +1,52 @@
+<div class="container" >
+    <div class="row">
+        <!--Edit Modal Start-->
+        <div class="modal fade" id="editModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="editModalLabel">Update Note</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="editNote">
 
-<div class="modal-body" id="viewNote"></div>
-<div class="modal-body" id="editNote"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Edit Modal End-->
+        <!--View Modal Start-->
+        <div class="modal fade" id="detailModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="detailModalLabel">Note Details</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="viewNote">
 
-<g:if test="${subjects}">
-    <g:select id="subjectList" name="subjectId" from="${subjects}" optionKey="id" optionValue="name" data-semester-id="${semesterId}" noSelection="['':'Select Subject']" Required="true"/>
-</g:if>
-<g:else>
-    <p>No subjects available.</p>
-</g:else>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--View Modal End-->
+    </div>
 
+    <div class="row d-flex justify-content-center">
+        <div class="col-3">
+            <g:if test="${subjects}">
+                <g:select class="form-select fs-4 mb-3" id="subjectList" name="subjectId" from="${subjects}" optionKey="id" optionValue="name" data-semester-id="${semesterId}" noSelection="['':'Select Subject']" Required="true"/>
+            </g:if>
+        </div>
+    </div>
 
-<div class="container mt-5" id="notesContainer">
-    <h3>Notes</h3>
-    <g:render template="show"/>
+    <div class="row mt-4" id="notesContainer">
+        <g:render template="show"/>
+    </div>
 </div>
-
 
 
 <script>

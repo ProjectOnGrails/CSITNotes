@@ -17,7 +17,7 @@ class NoteController {
                 notes.addAll(subject.notes)
             }
             if (!notes) {
-                flash.message = "Notes not found for Subject ID: $semesterId"
+                flash.message = "Notes not found for Semester ID: $semesterId"
             }
             model: [semesterId: semesterId, subjects: subjects, notes: notes]
         } catch (Exception e) {

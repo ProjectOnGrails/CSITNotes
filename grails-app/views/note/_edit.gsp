@@ -1,37 +1,34 @@
-<div class="modal fade" id="editModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="editModalLabel">Update Note</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<g:form action="update" enctype="multipart/form-data" id="${noteInstance.id}">
+    <div class="container">
+        <!-- Hidden field to pass semesterId -->
+        <input type="hidden" name="semesterId" value="${semesterId}" />
+        <div class="row mb-3">
+            <div class="col">
+                <div class="form-floating">
+                    <g:select class="form-select" name="subject" id="floatingSelect" from="${subjects}" optionKey="id" optionValue="name" value="${noteInstance.subject.id}"/>
+                    <label for="floatingSelect">Select Subject</label>
+                </div>
             </div>
-            <div class="modal-body">
-                <g:form controller="note" action="update" enctype="multipart/form-data" id="${noteInstance.id}">
-                    <!-- Hidden field to pass semesterId -->
-                    <input type="hidden" name="semesterId" value="${semesterId}" />
-
-                    <div class="mb-3">
-                        <label class="form-label">Subject:</label>
-                        <g:select name="subject" from="${subjects}" optionKey="id" optionValue="name" value="${noteInstance.subject?.id}"/>
-                    </div>
-
-                    <div class="mb-6">
-                        <label class="form-label">
-                            <input type="text" class="form-control" name="name" placeholder="Enter Note Name" value="${noteInstance.name}">
-                        </label>
-                    </div>
-
-                    <div class="mb-6">
-                        <label class="form-label">Choose Note:</label>
-                        <input type="file" class="form-control" name="fileEdit">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Update</button>
-                    </div>
-                </g:form>
+            <div class="col">
+                <div class="form-floating">
+                    <input type="text" class="form-control" name="name" id="floatingInput" value="${noteInstance.name}" placeholder="Enter Note Name">
+                    <label for="floatingInput">Note Name</label>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <div class="form-floating">
+                    <input type="file" class="form-control" id="floatingFile" name="fileEdit" multiple placeholder="Choose Files">
+                    <label for="floatingFile">Choose Files</label>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </div>
+</g:form>
+
 

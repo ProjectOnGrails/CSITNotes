@@ -1,4 +1,3 @@
-
 <div class="table-responsive mt-3">
     <table id="myTable" class="table table-striped table-bordered">
         <thead>

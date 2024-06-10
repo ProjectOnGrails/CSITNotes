@@ -3,27 +3,58 @@
 <head>
     <meta name="layout" content="main"/>
     <title>semester</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!-- Include jQuery and DataTables JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-    <!-- Include DataTables CSS -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
 </head>
 
 <body>
-<div class="container mt-5">
+<div class="container">
     <g:render template="/shared/errorMessage"/>
-    <g:render template="create"/>
-    <div class="modal-body" id="editBook"></div>
-    <div class="mt-3">
-        <h1>Semester List</h1>
-        <g:each in="${semesters}" var="semester">
-            <button class="btn btn-success semesterBtn" data-semester-id="${semester.id}">${semester.name}</button>
-        </g:each>
+    <div class="row">
+        <div class="col">
+            <button type="button" id="addBook" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Create Book
+            </button>
+            <!--Create Modal Start-->
+            <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Book</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Create Modal End-->
+
+            <!--Edit Modal Start-->
+            <div class="modal fade" id="editModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="editModalLabel">Update Book</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="editBook">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Edit Modal End-->
+        </div>
     </div>
-    <div id="books-container" class="mt-3">
-        <!-- Books will be displayed here -->
+    <div class="row">
+        <div class="col">
+            <h1>Semester List</h1>
+            <g:each in="${semesters}" var="semester">
+                <button class="btn btn-success semesterBtn" data-semester-id="${semester.id}">${semester.name}</button>
+            </g:each>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col" id="books-container">
+        </div>
     </div>
 </div>
 

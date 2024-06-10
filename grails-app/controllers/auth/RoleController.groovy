@@ -36,6 +36,11 @@ class RoleController {
         redirect(view: 'index')
     }
 
+
+    def create(){
+        render(template: 'create')
+    }
+
     def edit(){
         def id=params.id
         Role roleInstance=Role.findById(id)

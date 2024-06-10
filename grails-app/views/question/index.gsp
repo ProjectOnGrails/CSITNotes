@@ -1,7 +1,29 @@
+<div class="container">
+    <div class="row">
+        <!--Edit Modal Start-->
+        <div class="modal fade" id="editModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="editModalLabel">Update Question</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="editQuestion">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Edit Modal End-->
 
-<div class="modal-body" id="editQuestion"></div>
-<g:render template="show"/>
-<div class="modal-body" id="viewQuestion"></div>
+        <!--View Modal End-->
+        <div id="viewQuestion"></div>
+        <!--View Modal End-->
+
+    </div>
+    <div class="row">
+        <g:render template="show"/>
+    </div>
+</div>
 
 <script>
     $('.viewBtn').click(function() {

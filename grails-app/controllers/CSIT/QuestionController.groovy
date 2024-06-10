@@ -11,7 +11,7 @@ class QuestionController {
             def semester=Semester.findById(semesterId)
             def subjects= semester.subjects
             if (!subjects) {
-                flash.message = "Subjects not found for Semester ID: $semesterId"
+                flash.message = "Questions not found for Semester ID: $semesterId"
             }
             model: [semesterId: semesterId,subjects:subjects]
         } catch (Exception e) {

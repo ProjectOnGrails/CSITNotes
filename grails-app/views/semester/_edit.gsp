@@ -1,47 +1,36 @@
 <%@ page import="CSIT.Semester" %>
 
-<!-- Modal -->
-<div class="modal fade" id="editModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="editModalLabel">Update Role</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<g:form action="update" id="${semester.id}" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-5">
+            <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="floatingInput" name="orderNumber" value="${semester.orderNumber}">
+                <label for="floatingInput">Order Number</label>
             </div>
-            <div class="modal-body">
-                <g:form action="update" id="${semester.id}" enctype="multipart/form-data">
-                    <div class="mb-3">
-                        <label class="form-label">
-                            <input type="hidden" name="id" value="${semester.id}">
-                        </label>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">
-                            <input type="text" class="form-control" name="orderNumber" value="${semester.orderNumber}" placeholder="Enter Order Number">
-                        </label>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">
-                            <select class="form-control" name="name" required>
-                                <g:each var="semesterName" in="${Semester.SemesterName.values()}">
-                                    <option value="${semesterName}" ${semesterName==semester.name ? 'selected' : ''}>${semesterName}</option>
-                                </g:each>
-                            </select>
-                        </label>
-                    </div>
+        </div>
+        <div class="col">
+            <div class="form-floating">
+                <g:select class="form-select" name="name" id="floatingSelect" from="${Semester.SemesterName}"
+                          value="${semester.name}"/>
+                <label for="floatingSelect">Select Semester</label>
+            </div>
 
-                    <div class="mb-6">
-                        <label class="form-label">Choose Picture
-                            <input type="file" class="form-control" name="pictureEdit">
-                        </label>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Update</button>
-                    </div>
-                </g:form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <div class="form-floating">
+                <input type="file" class="form-control" id="floatingFile" name="pictureEdit"/>
+                <label for="floatingFile">Choose Picture</label>
             </div>
         </div>
     </div>
-</div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </div>
+</g:form>
+
+
+

@@ -1,26 +1,32 @@
-<g:form action="save" method="POST" enctype="multipart/form-data">
-
-    <!-- Hidden field to pass semesterId -->
-    <input type="hidden" name="semesterId" value="${semesterId}" />
-
-    <div class="md-6">
-        <g:select from="${subjects}" name="subject" optionKey="id" optionValue="name" noSelection="['':'Select Subject']" Required="true"/>
-    </div>
-    <br>
-
-    <div class="mb-6">
-        <label class="form-label">
-            <input type="text" class="form-control" name="name" placeholder="Enter Note Name">
-        </label>
-    </div>
-
-    <div class="mb-6">
-        <label class="form-label">Choose Notes
-            <input type="file" class="form-control" name="fileUpload" multiple>
-        </label>
+<g:form controller="note" action="save" method="POST" enctype="multipart/form-data">
+    <div class="container">
+        <!-- Hidden field to pass semesterId -->
+        <input type="hidden" name="semesterId" value="${semesterId}" />
+        <div class="row mb-3">
+            <div class="col">
+                <div class="form-floating">
+                    <g:select class="form-select" from="${subjects}" name="subject" optionKey="id" optionValue="name" id="floatingSelect" Required="true"/>
+                    <label for="floatingSelect">Select Subject</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating">
+                    <input type="text" class="form-control" name="name" id="floatingInput" placeholder="Enter Note Name">
+                    <label for="floatingInput">Note Name</label>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <div class="form-floating">
+                    <input type="file" class="form-control" id="floatingFile" name="fileUpload" multiple placeholder="Choose Files">
+                    <label for="floatingFile">Choose Files</label>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="submit"  class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
     </div>
 </g:form>

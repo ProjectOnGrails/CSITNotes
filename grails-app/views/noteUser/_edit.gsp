@@ -1,58 +1,59 @@
 <%@ page import="user.NoteUser" %>
-<div class="modal fade" id="editModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="editModalLabel">Update NoteUser</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<g:form action="update" id="${userInstance.id}">
+    <div class="container">
+        <div class="row mb-3">
+            <div class="col">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingName" name="fullName" value="${userInstance.fullName}"  placeholder="Enter FullName">
+                    <label for="floatingName">Full Name</label>
+                </div>
             </div>
-            <div class="modal-body">
-                <g:form action="update" id="${userInstance.id}">
-                    <div class="mb-3">
-                        <label class="form-label">
-                            <input type="hidden" name="id" value="${userInstance.id}" disabled/>
-                            <input type="text" class="form-control" name="fullName" value="${userInstance.fullName}" placeholder="Enter Authority">
-                        </label>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">
-                            <select class="form-control" name="gender" required>
-                                <g:each var="gender" in="${NoteUser.Gender.values()}">
-                                    <option value="${gender}" ${gender == userInstance.gender ? 'selected' : ''}>${gender}</option>
-                                </g:each>
-                            </select>
-                        </label>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">
-                            <input type="text" class="form-control" name="email" value="${userInstance.email}" placeholder="Enter Authority">
-                        </label>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">
-                            <input type="text" class="form-control" name="user.username" value="${userInstance.user.username}" placeholder="Enter Username">
-                        </label>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">
-                            <input type="password" class="form-control" name="user.password" value="${userInstance.user.username}" placeholder="Enter Password">
-                        </label>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">
-                            <input type="text" class="form-control" name="phone" value="${userInstance.phone}" placeholder="Enter Authority">
-                        </label>
-                    </div>
-                    <div class="mb-3">
-                        <g:select name="newRoleId" from="${roles}" optionKey="id" optionValue="authority" value="${userInstance.user.authorities.id}" />
-                    </div>
+            <div class="col">
+                <div class="form-floating">
+                    <g:select class="form-select" id="floatingSelectGender" name="gender" from="${NoteUser.Gender}" value="${userInstance.gender}"/>
+                    <label for="floatingSelectGender">Gender</label>
+                </div>
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Update</button>
-                    </div>
-                </g:form>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="form-floating">
+                <input type="email" class="form-control" id="floatingInput" name="email" value="${userInstance.email}" placeholder="name@example.com">
+                <label for="floatingInput">Email address</label>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingUser" name="user.username" value="${userInstance.user.username}" placeholder="Enter Username"  autocomplete="off">
+                    <label for="floatingUser">UserName</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="floatingPassword" name="user.password" value="${userInstance.user.password}" placeholder="Enter Password"  autocomplete="off">
+                    <label for="floatingPassword">Password</label>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingPhone" name="phone" value="${userInstance.phone}" placeholder="Enter Phone Number">
+                    <label for="floatingPhone">Contact Number</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating">
+                    <g:select class="form-select" id="floatingSelect" name="newRoleId" from="${roles}" optionKey="id" optionValue="authority" value="${userInstance.user.authorities.id}"/>
+                    <label for="floatingSelect">Role</label>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </div>
+</g:form>
+

@@ -10,12 +10,12 @@ class BootStrap {
                 '/', '/error', '/index', '/index.gsp', '/**/favicon.ico', '/shutdown',
                 '/**/js/**', '/**/css/**', '/**/images/**',
                 '/login', '/login.*', '/login/*',
-                '/logout', '/logout.*', '/logout/*']) {
+                '/logout', '/logout.*', '/logout/*','/resource/**','/semester/**']) {
             new Requestmap(url: url, configAttribute: 'permitAll').save()
         }
         for (String urlAdmin in [
-                '/role/**', '/noteUser/**', '/semester/**', '/subject/**', '/resource/**',
-                '/question/**', '/note/**','/userRole/**']) {
+                '/role/**', '/noteUser/**','/subject/**',
+                '/question/**', '/note/**','/userRole/**','/dashboard/**',]) {
             new Requestmap(url: urlAdmin, configAttribute: 'ROLE_ADMIN').save()
         }
 //        new Requestmap(url: '/noteUser/**',      configAttribute: 'ROLE_ADMIN').save()

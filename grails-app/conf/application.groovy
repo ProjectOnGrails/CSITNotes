@@ -30,4 +30,3 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 
 grails.plugin.springsecurity.logout.postOnly = false // Allow both POST and GET requests to logout
 grails.plugin.springsecurity.logout.successUrl = '/login/auth' // Redirect URL after logout
-

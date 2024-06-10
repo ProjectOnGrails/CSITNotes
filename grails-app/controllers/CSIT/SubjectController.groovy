@@ -11,7 +11,7 @@ class SubjectController {
             def semesterId = params.semesterId
             def subjects=subjectService.getSubjects(semesterId)
             if (!subjects) {
-                flash.message = "Subjects not found for semester ID: $semesterId"
+                flash.message = "Syllabus not found for semester ID: $semesterId"
             }
             model: [semesterId: semesterId,subjects:subjects]
         }
