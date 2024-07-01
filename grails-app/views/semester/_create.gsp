@@ -4,7 +4,7 @@
     <div class="row mb-2">
         <div class="col-5">
             <div class="form-floating mb-3">
-                <input type="number" class="form-control" id="floatingInput" name="orderNumber" placeholder="1">
+                <input type="number" class="form-control" id="floatingInput" name="orderNumber">
                 <label for="floatingInput">Order Number</label>
             </div>
         </div>
@@ -22,5 +22,9 @@
                 <label for="floatingFile">Choose Picture</label>
             </div>
         </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit"  class="btn btn-primary">Save</button>
     </div>
 </g:form>

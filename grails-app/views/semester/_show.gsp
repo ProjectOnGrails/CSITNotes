@@ -7,14 +7,16 @@
                         <img src="${createLink(action: 'showPicture', id: temp.id)}" class="card-img-top img-fluid" alt="Semester Image">
                     </div>
                 </g:link>
-                <div class="card-footer text-center">
-                    <g:link action="edit" class="btn btn-success editBtn me-3" data-bs-toggle="modal" data-semester-id="${temp.id}">
-                        <i class="bi bi-pencil-square"></i>
-                    </g:link>
-                    <g:link action="delete" id="${temp.id}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this semester?')">
-                        <i class="bi bi-trash3-fill"></i>
-                    </g:link>
-                </div>
+                <sec:ifLoggedIn>
+                    <div class="card-footer text-center">
+                        <g:link action="edit" class="btn btn-success editBtn me-3" data-bs-toggle="modal" data-semester-id="${temp.id}">
+                            <i class="bi bi-pencil-square"></i>
+                        </g:link>
+                        <g:link action="delete" id="${temp.id}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this semester?')">
+                            <i class="bi bi-trash3-fill"></i>
+                        </g:link>
+                    </div>
+                </sec:ifLoggedIn>
             </div>
         </div>
     </g:each>

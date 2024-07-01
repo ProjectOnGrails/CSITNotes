@@ -10,11 +10,12 @@
     <g:render template="/shared/errorMessage"/>
     <div class="row">
         <div class="col">
-            <!-- Button trigger modal -->
-            <button type="button" id="addSemester" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Create Semester
-            </button>
-
+            <sec:ifLoggedIn>
+                <!-- Button trigger modal -->
+                <button type="button" id="addSemester" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Create Semester
+                </button>
+            </sec:ifLoggedIn>
             <!--Create Modal -->
             <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -24,10 +25,6 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body" id="modalBody">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit"  class="btn btn-primary">Save</button>
                         </div>
                     </div>
                 </div>

@@ -20,13 +20,15 @@ class SemesterController {
         }
     }
 
+
     def create(){
         render(template: 'create')
     }
 
+
     def save(){
         try {
-            def user = springSecurityService.currentUser
+            String user = springSecurityService.currentUser
             Semester semInstance=new Semester(params)
             semInstance.createdBy=user
             if(semesterService.saveSemester(semInstance)){

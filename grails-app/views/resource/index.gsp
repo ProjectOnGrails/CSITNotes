@@ -21,35 +21,37 @@
             </nav>
         </div>
     </div>
-    <div class="row">
-        <div class="col">
-            <!-- Button trigger modal -->
-            <div class="dropdown">
-                <a class="btn btn-primary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Add Resource
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#" id="addSubject" data-bs-toggle="modal" data-bs-target="#exampleModal">Subject</a></li>
-                    <li><a class="dropdown-item" href="#" id="addNote" data-bs-toggle="modal" data-bs-target="#exampleModal">Note</a></li>
-                    <li><a class="dropdown-item" href="#" id="addQuestion" data-bs-toggle="modal" data-bs-target="#exampleModal">Question</a></li>
-                </ul>
-            </div>
+    <sec:ifLoggedIn>
+        <div class="row">
+            <div class="col">
+                <!-- Button trigger modal -->
+                <div class="dropdown">
+                    <a class="btn btn-primary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Add Resource
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#" id="addSubject" data-bs-toggle="modal" data-bs-target="#exampleModal">Subject</a></li>
+                        <li><a class="dropdown-item" href="#" id="addNote" data-bs-toggle="modal" data-bs-target="#exampleModal">Note</a></li>
+                        <li><a class="dropdown-item" href="#" id="addQuestion" data-bs-toggle="modal" data-bs-target="#exampleModal">Question</a></li>
+                    </ul>
+                </div>
 
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Resource</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body" id="modalBody">
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Add Resource</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" id="modalBody">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </sec:ifLoggedIn>
 
     <div class="row">
         <div class="col">

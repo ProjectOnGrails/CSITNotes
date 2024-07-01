@@ -12,7 +12,7 @@ class Subject {
     String createdBy
     String updatedBy
     static belongsTo = [semester:Semester]
-    static hasMany = [books:Book,notes:Note,questions:Question]
+    static hasMany = [notes:Note,questions:Question]
     def beforeInsert() {
         dateCreated = new Date()
     }
